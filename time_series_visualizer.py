@@ -21,21 +21,26 @@ def draw_line_plot():
     plt.legend(['Value in millions'])
     plt.show()
 
-
-
-
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
     return fig
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
-    df_bar = None
+    df_bar = df.groupby([df.index.year, df.index.month])['value'].mean().unstack()
 
     # Draw bar plot
-
-
-
+    fig = grouped.plot(kind='bar', figsize=(10, 6))
+    # Set plot title and axis labels
+    fig.set_title('Average Daily Page Views per Month (2016-2021)')
+    fig.set_xlabel('Years')
+    fig.set_ylabel('Average Page Views')
+    
+    # Set legend title and position
+    fig.legend(title='Months', loc='upper left')
+    
+    # Show plot
+    plt.show()
 
 
     # Save image and return fig (don't change this part)
