@@ -28,6 +28,18 @@ def draw_line_plot():
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
     df_bar = df.groupby([df.index.year, df.index.month])['value'].mean().unstack()
+    df_bar.rename(columns={1:'January',
+                               2:'February',
+                               3:'March',
+                               4:'April',
+                               5:'May',
+                               6:'June',
+                               7:'July',
+                               8:'August',
+                               9:'September',
+                               10:'October',
+                               11:'November',
+                               12:'December'}, inplace=True)
 
     # Draw bar plot
     fig = grouped.plot(kind='bar', figsize=(10, 6))
